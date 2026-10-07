@@ -112,6 +112,17 @@ function svgChart(s) {
   const above = s.map((p, i) => `${i ? "L" : "M"}${X(p.t.getTime()).toFixed(1)},${Y(Math.max(p.v, TOO_HIGH_FT)).toFixed(1)}`).join("") +
                 `L${X(x1)},${Y(TOO_HIGH_FT)}L${X(x0)},${Y(TOO_HIGH_FT)}Z`;
   const hi = s.reduce((a, b) => b.v > a.v ? b : a), lo = s.reduce((a, b) => b.v < a.v ? b : a);
+  // Where the curve crosses the too-high line: a small mark and the time, just under the line.
+  let cross = "";
+  for (let i = 0; i < s.length - 1; i++) {
+    const p = s[i], q = s[i + 1];
+    if ((p.v - TOO_HIGH_FT) * (q.v - TOO_HIGH_FT) < 0) {
+      const tc = new Date(p.t.getTime() + (q.t - p.t) * (TOO_HIGH_FT - p.v) / (q.v - p.v));
+      const xc = X(tc.getTime()), yc = Y(TOO_HIGH_FT);
+      cross += `<circle cx="${xc}" cy="${yc}" r="4" fill="var(--red)"/>` +
+               `<text x="${xc}" y="${yc + 17}" text-anchor="middle" font-size="12" font-weight="700" fill="var(--red)">${hm(tc)}</text>`;
+    }
+  }
   let g = "";
   for (let v = 0; v <= ymax; v += 2) g += `<line x1="${L}" x2="${W - R}" y1="${Y(v)}" y2="${Y(v)}" stroke="var(--border)"/><text x="${L - 6}" y="${Y(v) + 4}" text-anchor="end" font-size="12" fill="var(--muted)">${v}</text>`;
   for (let h = WIN[0]; h <= WIN[1]; h++) { const t = new Date(s[0].t); t.setHours(h, 0, 0, 0);
@@ -129,7 +140,7 @@ function svgChart(s) {
     <line x1="${L}" x2="${W - R}" y1="${Y(TOO_HIGH_FT)}" y2="${Y(TOO_HIGH_FT)}" stroke="var(--red)" stroke-width="2" stroke-dasharray="7 5"/>
     <text x="${L + 6}" y="${Y(TOO_HIGH_FT) - 6}" font-size="12" fill="var(--red)">too high to sail (+${TOO_HIGH_FT} ft)</text>
     <path d="${line}" fill="none" stroke="var(--line)" stroke-width="3"/>
-    ${tag(hi, "highest", true)}${tag(lo, "lowest", false)}</svg>`;
+    ${cross}${tag(hi, "highest", true)}${tag(lo, "lowest", false)}</svg>`;
 }
 
 let TN = null;
