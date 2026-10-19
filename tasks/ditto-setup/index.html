@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ditto setup</title>
+<meta name="robots" content="noindex">
+<meta property="og:title" content="Set up the Ditto mail sorter">
+<meta property="og:description" content="Step by step: make an app password for Gmail or Yahoo and send it to Mike.">
+<style>
+  :root { --ink:#1d2430; --muted:#5b6575; --accent:#1f5fa8; --bg:#ffffff; --card:#f6f8fb; --border:#dde3ea; --warn:#8a5a00; --warnbg:#fff6e0; }
+  @media (prefers-color-scheme: dark) {
+    :root { --ink:#e6eaf0; --muted:#9aa5b5; --accent:#6aa8ee; --bg:#121519; --card:#1b2027; --border:#2c333d; --warn:#ffcf70; --warnbg:#2a2412; }
+  }
+  * { box-sizing:border-box; }
+  body { margin:0 auto; max-width:760px; padding:16px; background:var(--bg); color:var(--ink);
+         font:16px/1.5 -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif; }
+  h1 { font-size:24px; margin:6px 0 4px; }
+  .sub { color:var(--muted); margin:0 0 16px; }
+  nav { display:flex; gap:10px; flex-wrap:wrap; margin:0 0 18px; }
+  nav a { flex:1 1 0; min-width:140px; text-align:center; padding:12px; border-radius:10px; border:1px solid var(--border);
+          background:var(--card); color:var(--ink); font-weight:600; text-decoration:none; }
+  section { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:14px 16px 8px; margin:0 0 18px; }
+  h2 { font-size:20px; margin:0 0 8px; }
+  h3 { font-size:16px; margin:14px 0 4px; }
+  ol { padding-left:22px; margin:4px 0 10px; }
+  li { margin:4px 0; }
+  code, .k { font-family:ui-monospace, Menlo, monospace; background:var(--bg); border:1px solid var(--border); border-radius:5px; padding:0 5px; }
+  a { color:var(--accent); }
+  .box { background:var(--warnbg); color:var(--warn); border-radius:10px; padding:10px 12px; margin:10px 0; }
+  .note { color:var(--muted); font-size:14px; }
+  a.btn { display:block; margin:8px 0 2px; padding:12px 14px; border-radius:10px; background:var(--accent); color:#fff;
+          font-weight:700; text-decoration:none; text-align:center; }
+  .after { color:var(--muted); font-size:14px; margin:0 0 8px; text-align:center; }
+</style>
+</head>
+<body>
+<h1>Set up the Ditto mail sorter</h1>
+<p class="sub">Ditto keeps junk and advertisements out of your inbox. It runs on Mike's computer. To connect it, your mail provider gives you a special password for Ditto only, and you send it to Mike. It takes about 10 minutes. Please use a computer, not a phone.</p>
+
+<nav>
+  <a href="#gmail">I use Gmail</a>
+  <a href="#yahoo">I use Yahoo</a>
+</nav>
+
+<section>
+  <h2>Before you start</h2>
+  <ul>
+    <li>This special password is called an <b>app password</b>. It has 16 letters.</li>
+    <li>It only lets Ditto read and sort your mail. It cannot change your normal password or see anything else in your account.</li>
+    <li>Your normal password does not change. Keep signing in the way you always do.</li>
+    <li>You can switch Ditto off at any time: delete the app password named <b>ditto</b> (the last step in each section shows where).</li>
+  </ul>
+</section>
+
+<section id="gmail">
+  <h2>Gmail</h2>
+
+  <h3>Part 1: Turn on 2-Step Verification</h3>
+  <p class="note">Google gives app passwords only to accounts with 2-Step Verification. If yours already has it, go to Part 2.</p>
+  <a class="btn" href="https://myaccount.google.com/signinoptions/twosv" target="_blank" rel="noopener">Open Google 2-Step Verification</a>
+  <p class="after">If Google asks you to sign in, sign in. You then land on the right page.</p>
+  <ol>
+    <li>Click <b>Turn on 2-Step Verification</b>.</li>
+    <li>Follow the steps: Google texts a code to your phone, and you type it in.</li>
+    <li>When the page says 2-Step Verification is <b>On</b>, go to Part 2.</li>
+  </ol>
+
+  <h3>Part 2: Make the app password</h3>
+  <a class="btn" href="https://myaccount.google.com/apppasswords" target="_blank" rel="noopener">Open Google App passwords</a>
+  <p class="after">Google may ask for your password again. Type it, and you land on the right page.</p>
+  <ol>
+    <li>In the box <b>App name</b>, type <span class="k">ditto</span> and click <b>Create</b>.</li>
+    <li>Google shows a password of 16 letters in a yellow box, in four groups of four.</li>
+    <li>Do Part 3 now. Google shows this password only once.</li>
+  </ol>
+  <div class="box">If the app passwords page says "The setting you are looking for is not available for your account", 2-Step Verification is not on yet (go back to Part 1). If it still says that, your account is a work or school account: tell Mike.</div>
+
+  <h3>Part 3: Send it to Mike</h3>
+  <ol>
+    <li>Send Mike a text message to the number he gave you, with two lines:
+      <br>your Gmail address
+      <br>the 16 letters (spaces do not matter)</li>
+    <li>Then click <b>Done</b> on the Google page.</li>
+  </ol>
+  <p class="note">To switch Ditto off later: <a href="https://myaccount.google.com/apppasswords" target="_blank" rel="noopener">myaccount.google.com/apppasswords</a> → click the trash can next to <b>ditto</b>.</p>
+</section>
+
+<section id="yahoo">
+  <h2>Yahoo</h2>
+
+  <h3>Part 1: Turn on two-step verification</h3>
+  <p class="note">Yahoo requires this first. If yours already has it, go to Part 2.</p>
+  <a class="btn" href="https://login.yahoo.com/account/security" target="_blank" rel="noopener">Open Yahoo Account security</a>
+  <p class="after">If Yahoo asks you to sign in, sign in. You then land on the right page.</p>
+  <ol>
+    <li>Find <b>Two-step verification</b> and click <b>Turn on</b>.</li>
+    <li>Choose <b>Phone number</b>, type your mobile number, and click <b>Send code</b>.</li>
+    <li>Type the code Yahoo texts you and click <b>Verify</b>.</li>
+  </ol>
+
+  <h3>Part 2: Make the app password</h3>
+  <a class="btn" href="https://login.yahoo.com/account/security" target="_blank" rel="noopener">Open Yahoo Account security</a>
+  <p class="after">The same page as Part 1. If you are still on it, just scroll.</p>
+  <ol>
+    <li>Find <b>App passwords</b> (it may say "Generate and manage app passwords") and click it.</li>
+    <li>In the app name box, type <span class="k">ditto</span>.</li>
+    <li>Click <b>Generate password</b>. Yahoo shows a password of 16 letters.</li>
+  </ol>
+
+  <h3>Part 3: Send it to Mike</h3>
+  <ol>
+    <li>Send Mike a text message to the number he gave you, with two lines:
+      <br>your Yahoo address
+      <br>the 16 letters (spaces do not matter)</li>
+    <li>Then click <b>Done</b> on the Yahoo page.</li>
+  </ol>
+  <p class="note">To switch Ditto off later: <a href="https://login.yahoo.com/account/security" target="_blank" rel="noopener">login.yahoo.com/account/security</a> → <b>App passwords</b> → remove <b>ditto</b>.</p>
+</section>
+
+<section>
+  <h2>After you send it</h2>
+  <p>Mike connects your account. Within a few minutes two new folders appear in your mail: <b>_ditto junk quarantine</b> and <b>_ditto marketing quarantine</b>.</p>
+  <ul>
+    <li>Drag a junk message into <b>_ditto junk quarantine</b>.</li>
+    <li>Drag an advertisement you do not want into <b>_ditto marketing quarantine</b>.</li>
+  </ul>
+  <p>That is all. Ditto learns from what you drag, and soon moves look-alike mail there by itself. Junk goes to spam after a day; advertisements go to the trash after a week. If Ditto moves something you want, drag it back to your inbox and it learns from that too. Once a week you get a short summary email.</p>
+  <p class="note">If anything on your screen looks different from these steps, text Mike a photo of the screen.</p>
+</section>
+</body>
+</html>
