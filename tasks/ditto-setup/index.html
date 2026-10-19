@@ -29,6 +29,10 @@
   a { color:var(--accent); }
   .box { background:var(--warnbg); color:var(--warn); border-radius:10px; padding:10px 12px; margin:10px 0; }
   .note { color:var(--muted); font-size:14px; }
+  details.prov { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:12px 16px 8px; margin:0 0 18px; }
+  details.prov summary { cursor:pointer; list-style:revert; }
+  details.prov summary h2 { display:inline; margin:0; }
+  details.prov[open] summary { margin-bottom:8px; }
   details.tip { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:12px 16px; margin:0 0 18px; }
   details.tip summary { cursor:pointer; }
   details.tip[open] summary { margin-bottom:6px; }
@@ -42,8 +46,8 @@
 <p class="sub">Ditto keeps junk and advertisements out of your inbox. It runs on Mike's computer. To connect it, your mail provider gives you a special password for Ditto only, and you send it to Mike. It takes about 10 minutes. Please use a computer, not a phone.</p>
 
 <nav>
-  <a href="#gmail">I use Gmail</a>
-  <a href="#yahoo">I use Yahoo</a>
+  <a href="#gmail" data-open="gmail">I use Gmail</a>
+  <a href="#yahoo" data-open="yahoo">I use Yahoo</a>
 </nav>
 
 <section>
@@ -56,8 +60,8 @@
   </ul>
 </section>
 
-<section id="gmail">
-  <h2>Gmail</h2>
+<details class="prov" id="gmail">
+  <summary><h2>Gmail</h2></summary>
 
   <h3>Part 1: Turn on 2-Step Verification</h3>
   <p class="note">Google gives app passwords only to accounts with 2-Step Verification. If yours already has it, go to Part 2.</p>
@@ -87,10 +91,10 @@
     <li>Then click <b>Done</b> on the Google page.</li>
   </ol>
   <p class="note">To switch Ditto off later: <a href="https://myaccount.google.com/apppasswords" target="_blank" rel="noopener">myaccount.google.com/apppasswords</a> → click the trash can next to <b>ditto</b>.</p>
-</section>
+</details>
 
-<section id="yahoo">
-  <h2>Yahoo</h2>
+<details class="prov" id="yahoo">
+  <summary><h2>Yahoo</h2></summary>
 
   <h3>Part 1: Turn on two-step verification</h3>
   <p class="note">Yahoo requires this first. If yours already has it, go to Part 2.</p>
@@ -119,7 +123,7 @@
     <li>Then click <b>Done</b> on the Yahoo page.</li>
   </ol>
   <p class="note">To switch Ditto off later: <a href="https://login.yahoo.com/account/security" target="_blank" rel="noopener">login.yahoo.com/account/security</a> → <b>App passwords</b> → remove <b>ditto</b>.</p>
-</section>
+</details>
 
 <section>
   <h2>After you send it</h2>
@@ -142,5 +146,17 @@
     <li><b>Other mail apps:</b> if you can drag folders, drag them to the top. If not, look for <b>Favorites</b> or a star next to the folder.</li>
   </ul>
 </details>
+<script>
+  // "I use Gmail" / "I use Yahoo": open that section, close the other, scroll to it.
+  function openProv(id) {
+    document.querySelectorAll("details.prov").forEach(d => { d.open = (d.id === id); });
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+  document.querySelectorAll("nav a[data-open]").forEach(a => a.addEventListener("click", e => {
+    e.preventDefault(); history.replaceState(null, "", "#" + a.dataset.open); openProv(a.dataset.open);
+  }));
+  if (location.hash === "#gmail" || location.hash === "#yahoo") openProv(location.hash.slice(1));
+</script>
 </body>
 </html>
