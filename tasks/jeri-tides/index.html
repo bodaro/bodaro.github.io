@@ -38,16 +38,21 @@
   <button data-days="7">Next 7 days</button>
 </div>
 <div id="out"><p class="sub">Loading tides…</p></div>
-<p class="note">Computed live in your browser from the Open-Meteo marine model, corrected to the Jericoacoara tide table (+33 min, low-water datum; checked within 6 min and 0.2 ft on 2026-10-07). Not for navigation.</p>
+<p class="note" id="src">Loading tide turns…</p>
+<p class="note">Heights in feet above low water, in the datum of the tabuademares.com table for Jijoca de Jericoacoara (the printed table matched the beach, 2026-10-25). When the table is not available the page uses the Open-Meteo marine model, corrected to it. Not for navigation.</p>
 
 <script>
 // Settings Mike may tune.
-const TOO_HIGH_FT = 9.7;    // Mike 2026-10-23: 9.7 ft (the tide at 14:30 that day, 9.70 ft; model cross-check
+const TOO_HIGH_FT = 9.5;    // 2026-10-25: 2.9 m in the tabuademares datum (see the note below).
+// Earlier: 9.7;    // Mike 2026-10-23: 9.7 ft (the tide at 14:30 that day, 9.70 ft; model cross-check
                              // 9.72). Was 9.0 (2026-10-07: the tide at 13:20, 8.95 ft, rounded).
 const WIN = [11, 18];   // 11:00-18:00 (Mike 2026-10-07)
-// Calibration against the published Jericoacoara table (2026-10-07, 38 turns):
-// table time = model time + 33 min; table ft = 0.950 * model ft + 5.39.
-const SHIFT_MIN = 33, A = 0.950, B = 5.39, FT = 3.28084;
+// The exact turns come from turns.json (the tabuademares.com month table, published daily by the
+// Mac task). The weather model below is the fallback only, calibrated to that table on
+// 2026-10-25 (Oct 19-31, 50 turns): table time = model time + 85 min; table ft = 0.896 * model ft + 4.79
+// (within about 15 min and 0.3 m; the model under-reads the range at neap tides).
+const SHIFT_MIN = 85, A = 0.896, B = 4.79, FT = 3.28084;
+const TURNS_URL = "turns.json";
 const URL = "https://marine-api.open-meteo.com/v1/marine?latitude=-2.7958&longitude=-40.5127" +
             "&hourly=sea_level_height_msl&timezone=America%2FFortaleza&forecast_days=10&cell_selection=sea";
 
@@ -166,8 +171,18 @@ function render(days) {
 
 document.querySelectorAll(".btns button").forEach(b => b.addEventListener("click", () => render(Number(b.dataset.days))));
 const start = Math.min(7, Math.max(1, Number(new URLSearchParams(location.search).get("days")) || 1));
-fetch(URL).then(r => r.json()).then(j => { TN = turns(model(j)); render(start); })
-  .catch(e => { document.getElementById("out").innerHTML = `<p class="err">Could not load tides (${e}). Try again in a minute.</p>`; });
+// 1. The table (exact) when turns.json covers the days asked for; 2. else the model.
+function fromTable(doc, days) {
+  const now = new Date(); const end = new Date(now.getFullYear(), now.getMonth(), now.getDate() + days);
+  const pts = (doc.turns || []).map(x => ({ t: new Date(x.t), v: x.ft, high: x.kind === "high" }));
+  const covers = pts.some(p => p.t <= now) && pts.some(p => p.t >= end);
+  return covers ? pts : null;
+}
+fetch(TURNS_URL, { cache: "no-store" }).then(r => r.ok ? r.json() : null).catch(() => null).then(doc => {
+  const pts = doc ? fromTable(doc, start) : null;
+  if (pts) { TN = pts; document.getElementById("src").textContent = `Tide turns: tabuademares.com table (exact), published ${doc.generated}.`; render(start); return; }
+  return fetch(URL).then(r => r.json()).then(j => { TN = turns(model(j)); document.getElementById("src").textContent = "Tide turns: weather model, calibrated to the table (about 15 min / 0.3 m)."; render(start); });
+}).catch(e => { document.getElementById("out").innerHTML = `<p class="err">Could not load tides (${e}). Try again in a minute.</p>`; });
 </script>
 </body>
 </html>
