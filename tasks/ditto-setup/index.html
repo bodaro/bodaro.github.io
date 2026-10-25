@@ -28,6 +28,7 @@
   code, .k { font-family:ui-monospace, Menlo, monospace; background:var(--bg); border:1px solid var(--border); border-radius:5px; padding:0 5px; }
   a { color:var(--accent); }
   .box { background:var(--warnbg); color:var(--warn); border-radius:10px; padding:10px 12px; margin:10px 0; }
+  .box a.btn { margin:10px 0; }
   .note { color:var(--muted); font-size:14px; }
   pre.sms i.ph { color:var(--muted); }
   pre.sms { background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:8px 10px; margin:6px 0;
@@ -46,7 +47,7 @@
 </head>
 <body>
 <h1>Set up the Ditto mail sorter</h1>
-<p class="sub">Ditto keeps junk and advertisements out of your inbox. It runs on Mike's computer. To connect it, your mail provider gives you a special password for Ditto only, and you send it to Mike. It takes about 10 minutes. Please use a computer, not a phone.</p>
+<p class="sub">Ditto keeps junk and advertisements out of your inbox. It runs on Mike's computer. To connect it, your mail provider gives you a special password for Ditto only, and you send it to Mike. It takes about 3 minutes, on your phone or a computer.</p>
 
 <nav>
   <a href="#gmail" data-open="gmail">I use Gmail</a>
@@ -59,36 +60,28 @@
     <li>This special password is called an <b>app password</b>. It has 16 letters.</li>
     <li>It only lets Ditto read and sort your mail. It cannot change your normal password or see anything else in your account.</li>
     <li>Your normal password does not change. Keep signing in the way you always do.</li>
-    <li>Keep this page open. Each blue button opens Gmail or Yahoo in a <b>new tab</b>, so this page stays in its own tab. After each part, click this page's tab at the top of the browser to come back to the next step.</li>
+    <li>Keep this page open. Each blue button opens Gmail or Yahoo in a <b>new tab</b>, so this page stays in its own tab. After each step, click this page's tab at the top of the browser to come back here.</li>
     <li>You can switch Ditto off at any time: text Mike <b>ditto off</b>. To remove Ditto completely, delete the app password named <b>ditto</b> (the end of each section shows where).</li>
   </ul>
 </section>
 
 <details class="prov" id="gmail">
   <summary><h2>Gmail</h2></summary>
-  <p class="note">Each blue button below opens Google in a new tab. When you finish there, come back to this tab for the next part.</p>
+  <p class="note">Each blue button below opens Google in a new tab. When you finish there, come back to this tab for the next step.</p>
 
-  <h3>Part 1: Turn on 2-Step Verification</h3>
-  <p class="note">Google gives app passwords only to accounts with 2-Step Verification. If yours already has it, go to Part 2.</p>
-  <a class="btn" href="https://myaccount.google.com/signinoptions/twosv" target="_blank" rel="noopener">Open Google 2-Step Verification (new tab)</a>
-  <p class="after">If Google asks you to sign in, sign in. You then land on the right page.</p>
-  <ol>
-    <li>Click <b>Turn on 2-Step Verification</b>.</li>
-    <li>Follow the steps: Google texts a code to your phone, and you type it in.</li>
-    <li>When the page says 2-Step Verification is <b>On</b>, go to Part 2.</li>
-  </ol>
-
-  <h3>Part 2: Make the app password</h3>
-  <a class="btn" href="https://myaccount.google.com/apppasswords" target="_blank" rel="noopener">Open Google App passwords (new tab)</a>
-  <p class="after">Google may ask for your password again. Type it, and you land on the right page.</p>
+  <h3>Step 1: Make the app password</h3>
+  <a class="btn" href="https://myaccount.google.com/apppasswords" target="_blank" rel="noopener">Open Google: App passwords (new tab)</a>
+  <p class="after">Google asks you to sign in, then shows the App passwords page.</p>
   <ol>
     <li>In the box <b>App name</b>, type <span class="k">ditto</span> and click <b>Create</b>.</li>
     <li>Google shows a password of 16 letters in a yellow box, in four groups of four.</li>
-    <li>Do Part 3 now. Google shows this password only once.</li>
+    <li>Do Step 2 now. Google shows this password only once.</li>
   </ol>
-  <div class="box">If the app passwords page says "The setting you are looking for is not available for your account", 2-Step Verification is not on yet (go back to Part 1). If it still says that, your account is a work or school account: tell Mike.</div>
+  <div class="box">If the page says <b>"The setting you are looking for is not available for your account"</b>, Google wants 2-Step Verification on first. Click this button, then click <b>Turn on 2-Step Verification</b> and follow the steps: Google texts a code to your phone, and you type it in.
+    <a class="btn" href="https://myaccount.google.com/signinoptions/twosv" target="_blank" rel="noopener">Open Google 2-Step Verification (new tab)</a>
+    When the page says 2-Step Verification is <b>On</b>, go back to Step 1 and click its blue button again. If it still says the setting is not available, your account is a work or school account: tell Mike.</div>
 
-  <h3>Part 3: Send it to Mike</h3>
+  <h3>Step 2: Send it to Mike</h3>
   <ol>
     <li>Send Mike a text message to the number he gave you. Put each of these three things on its own line:
       <pre class="sms">ditto
@@ -104,28 +97,21 @@
 
 <details class="prov" id="yahoo">
   <summary><h2>Yahoo</h2></summary>
-  <p class="note">Each blue button below opens Yahoo in a new tab. When you finish there, come back to this tab for the next part.</p>
+  <p class="note">Each blue button below opens Yahoo in a new tab. When you finish there, come back to this tab for the next step.</p>
 
-  <h3>Part 1: Turn on two-step verification</h3>
-  <p class="note">Yahoo requires this first. If yours already has it, go to Part 2.</p>
-  <a class="btn" href="https://login.yahoo.com/account/security" target="_blank" rel="noopener">Open Yahoo Account security (new tab)</a>
-  <p class="after">If Yahoo asks you to sign in, sign in. You then land on the right page.</p>
+  <h3>Step 1: Make the app password</h3>
+  <a class="btn" href="https://login.yahoo.com/myaccount/security/app-password" target="_blank" rel="noopener">Open Yahoo: Generate app password (new tab)</a>
+  <p class="after">Yahoo asks you to sign in, then shows the "Generate app password" box.</p>
   <ol>
-    <li>Find <b>Two-step verification</b> and click <b>Turn on</b>.</li>
-    <li>Choose <b>Phone number</b>, type your mobile number, and click <b>Send code</b>.</li>
-    <li>Type the code Yahoo texts you and click <b>Verify</b>.</li>
-  </ol>
-
-  <h3>Part 2: Make the app password</h3>
-  <a class="btn" href="https://login.yahoo.com/account/security" target="_blank" rel="noopener">Open Yahoo Account security (new tab)</a>
-  <p class="after">The same page as Part 1. If you are still on it, just scroll.</p>
-  <ol>
-    <li>Find <b>App passwords</b> (it may say "Generate and manage app passwords") and click it.</li>
-    <li>In the app name box, type <span class="k">ditto</span>.</li>
+    <li>In the box, type <span class="k">ditto</span>.</li>
     <li>Click <b>Generate password</b>. Yahoo shows a password of 16 letters.</li>
+    <li>Do Step 2 now.</li>
   </ol>
+  <div class="box">If Yahoo says you must turn on <b>two-step verification</b> first: click this button, find <b>Two-step verification</b> on the page and click <b>Turn on</b>, choose <b>Phone number</b>, type your mobile number, click <b>Send code</b>, type the code Yahoo texts you and click <b>Verify</b>.
+    <a class="btn" href="https://login.yahoo.com/account/security" target="_blank" rel="noopener">Open Yahoo Account Security (new tab)</a>
+    Then go back to Step 1 and click its blue button again.</div>
 
-  <h3>Part 3: Send it to Mike</h3>
+  <h3>Step 2: Send it to Mike</h3>
   <ol>
     <li>Send Mike a text message to the number he gave you. Put each of these three things on its own line:
       <pre class="sms">ditto
@@ -136,7 +122,7 @@
     <li>Then click <b>Done</b> on the Yahoo page.</li>
   </ol>
   <p class="note">To switch Ditto off or back on, or to ask how it is doing: text Mike a message that starts with the word <b>ditto</b>, for example <span class="k">ditto off</span>, <span class="k">ditto on</span> or <span class="k">ditto status</span>. You can also text any other question about Ditto: make sure the word <b>ditto</b> is in your message, and Mike's agent will try to deal with it.</p>
-  <p class="note">To remove Ditto completely: open <a href="https://login.yahoo.com/account/security" target="_blank" rel="noopener">login.yahoo.com/account/security</a>, click <b>App passwords</b>, and remove <b>ditto</b>. Ditto then cannot read your mail at all.</p>
+  <p class="note">To remove Ditto completely: open <a href="https://login.yahoo.com/myaccount/security/app-password" target="_blank" rel="noopener">login.yahoo.com/myaccount/security/app-password</a> and remove <b>ditto</b>. Ditto then cannot read your mail at all.</p>
 </details>
 
 <section>
